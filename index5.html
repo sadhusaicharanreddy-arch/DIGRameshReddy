@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ramesh's Retirement Invitation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Traditional-looking Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Noto+Serif:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-card: #fffaf0;
+      --accent-1: #a01818;        /* softened maroon */
+      --accent-2: #0b6b3a;        /* deep green */
+      --accent-3: #d68a2c;        /* warm but softer orange */
+      --text-main: #4a2c0a;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    /* ===== PAGE BACKGROUND WITH FLORAL PATTERN ===== */
+    body {
+      margin: 0;
+      font-family: "Noto Serif", Georgia, "Times New Roman", serif;
+
+      /* Fallback colour if image fails */
+      background-color: #f3e6c4;
+
+      /* Floral tile + soft gradient  */
+      background-image:
+        url("https://www.toptal.com/designers/subtlepatterns/patterns/moroccan-flower-dark.png"),
+        radial-gradient(circle at top, #f7ebc7 0%, #f3e2b2 50%, #ecd29b 100%);
+
+      background-size: 260px 260px, cover;
+      background-repeat: repeat, no-repeat;
+      background-attachment: fixed, fixed;
+
+      color: var(--text-main);
+      padding-top: 64px; /* space for toolbar */
+    }
+
+    /* Light overlay so the pattern doesn’t overpower the text */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 249, 230, 0.78);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+
+    /* ===== TOP TOOLBAR / NAV ===== */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 249, 230, 0.96);
+      border-bottom: 1px solid rgba(160, 24, 24, 0.18);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-block: 0.4rem;
+    }
+
+    .brand {
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--accent-1);
+      white-space: nowrap;
+    }
+
+    .topbar-links {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .topbar-links a {
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: var(--accent-2);
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .topbar-links a:hover {
+      border-color: rgba(160, 24, 24, 0.4);
+      background: #fffdf5;
+    }
+
+    /* Hamburger button (hidden on desktop) */
+    .menu-toggle {
+      display: none;
+      border: none;
+      background: rgba(255,255,255,0.9);
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      font-size: 1.4rem;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--accent-1);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    }
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      padding: 2rem 1rem;
+    }
+
+    header .card {
+      background: var(--bg-card);
+      border-radius: 18px;
+      padding: 2.2rem 1.5rem;
+      border: 2px solid var(--accent-3);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header .border-top,
+    header .border-bottom {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      background-image: linear-gradient(
+        90deg,
+        var(--accent-1),
+        var(--accent-3),
+        var(--accent-2),
+        var(--accent-3),
+        var(--accent-1)
+      );
+    }
+
+    header .border-top { top: 0; }
+    header .border-bottom { bottom: 0; }
+
+    header h1 {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 1.9rem;
+      margin: 0 0 0.5rem;
+      color: var(--accent-1);
+      line-height: 1.15;
+    }
+
+    /* force two lines: Honouring / Shri K.V. Ramesh Reddy */
+    .hero-line-1,
+    .hero-line-2 {
+      display: block;
+    }
+
+    header h2 {
+      font-size: 1.3rem;
+      margin: 0.4rem 0 0.3rem;
+      color: var(--accent-2);
+    }
+
+    .hero-areas {
+      margin: 0 0 0.9rem;
+      font-size: 1rem;
+      color: #7a4b14;
+    }
+
+    header p {
+      margin: 0.3rem 0;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .tagline {
+      margin-top: 1rem;
+      font-style: italic;
+      font-size: 1.02rem;
+      color: #7a4b14;
+    }
+
+    .highlight-pill {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.15rem;
+      margin-top: 1.3rem;
+      padding: 0.6rem 1.3rem;
+      border-radius: 999px;
+      border: 1px dashed var(--accent-2);
+      background: rgba(255, 255, 255, 0.95);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--accent-2);
+      text-align: center;
+    }
+
+    .pill-title {
+      display: block;
+    }
+
+    .pill-date {
+      display: block;
+      font-weight: 600;
+    }
+
+    .scroll-hint {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #8a5b1c;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .scroll-arrow {
+      width: 14px;
+      height: 14px;
+      border-right: 2px solid var(--accent-1);
+      border-bottom: 2px solid var(--accent-1);
+      transform: rotate(45deg);
+      animation: bounce 1.4s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0) rotate(45deg); }
+      50% { transform: translateY(4px) rotate(45deg); }
+    }
+
+    section {
+      padding: 3rem 1.5rem 2rem;
+    }
+
+    section h3 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-family: "Playfair Display", serif;
+      font-size: 1.8rem;
+      color: var(--accent-1);
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    section h3::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -0.4rem;
+      width: 70%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-1), var(--accent-3), var(--accent-2));
+      border-radius: 4px;
+    }
+
+    /* ===== FADE-IN SCROLL EFFECT ===== */
+    .fade-section {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-section.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Guests section */
+    .venue-section {
+      background: #fffbe6;
+      border-radius: 18px;
+      padding: 1.6rem 1.3rem;
+      border: 2px solid rgba(178, 34, 34, 0.3);
+      margin-top: 2rem;
+    }
+
+    .venue-grid {
+      display: grid;
+      gap: 1.2rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .guests-block h4 {
+      margin: 0 0 0.5rem;
+      font-size: 1.05rem;
+      color: var(--accent-2);
+    }
+
+    .guest-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.2rem 0 0;
+      font-size: 0.95rem;
+    }
+
+    .guest-list li {
+      margin-bottom: 0.45rem;
+    }
+
+    .guest-list li::before {
+      content: "• ";
+      color: var(--accent-1);
+    }
+
+    .note {
+      margin-top: 1.1rem;
+      font-size: 0.9rem;
+      font-style: italic;
+      color: #7a4b14;
+    }
+
+    /* Journey Timeline */
+    .timeline {
+      margin-top: 2rem;
+      border-left: 3px solid var(--accent-3);
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: -9px;
+      top: 0;
+      bottom: 0;
+      border-left: 3px dotted rgba(0,0,0,0.1);
+    }
+
+    .timeline-item {
+      margin-bottom: 1.8rem;
+      position: relative;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+
+    .timeline-item.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -1.9rem;
+      top: 4px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent-2);
+      border: 2px solid #fffbe0;
+      box-shadow: 0 0 0 3px rgba(214,138,44,0.2);
+    }
+
+    .timeline-year {
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+      color: var(--accent-2);
+      font-size: 0.95rem;
+    }
+
+    .timeline-role {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .timeline-text {
+      font-size: 0.95rem;
+      margin-top: 0.15rem;
+    }
+
+    /* Memories – IMAGE SLIDER VERSION */
+    .memories-wrapper {
+      margin-top: 2.2rem;
+      background: #fffdf2;
+      border-radius: 16px;
+      border: 1px solid rgba(180, 100, 20, 0.35);
+      padding: 1.5rem 1.2rem 1.8rem;
+    }
+
+    .memories-intro {
+      font-size: 0.98rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .memories-slider {
+      position: relative;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .memory-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .memory-slide img {
+      width: 100%;
+      max-width: 480px;
+      height: 340px;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+    }
+
+    .memory-caption {
+      margin-top: 0.45rem;
+      font-size: 0.9rem;
+      text-align: center;
+      max-width: 480px;
+    }
+
+    .memory-slide.active {
+      opacity: 1;
+      position: relative;
+    }
+
+    .memories-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.35rem;
+      margin-top: 0.9rem;
+    }
+
+    .memories-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: 1px solid rgba(160,24,24,0.6);
+      background: rgba(255,255,255,0.7);
+    }
+
+    .memories-dot.active {
+      background: var(--accent-1);
+    }
+
+    .memories-hint {
+      text-align: center;
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      color: #8a5b1c;
+    }
+
+    /* Download Diary */
+    .download-section {
+      background: #fffdf2;
+      border-radius: 18px;
+      border: 2px solid rgba(178, 34, 34, 0.3);
+      padding: 1.6rem 1.3rem;
+      margin-top: 1.5rem;
+      text-align: center;
+    }
+
+    .download-text {
+      font-size: 0.96rem;
+      margin-bottom: 1rem;
+    }
+
+    .download-button {
+      display: inline-block;
+      margin-top: 0.2rem;
+      padding: 0.7rem 1.6rem;
+      border-radius: 999px;
+      border: none;
+      text-decoration: none;
+      font-size: 0.96rem;
+      font-weight: 600;
+      background: linear-gradient(90deg, var(--accent-2), var(--accent-3));
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .download-button:hover {
+      opacity: 0.92;
+    }
+
+    .download-note {
+      margin-top: 0.7rem;
+      font-size: 0.85rem;
+      color: #8a5b1c;
+      font-style: italic;
+    }
+
+    /* RSVP & Wishes */
+    .rsvp-section {
+      background: #fffdf2;
+      border-radius: 18px;
+      border: 2px solid rgba(178, 34, 34, 0.3);
+      padding: 1.6rem 1.3rem;
+      margin-top: 1.5rem;
+    }
+
+    .rsvp-intro {
+      font-size: 0.96rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .rsvp-form {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .rsvp-row {
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    @media (min-width: 600px) {
+      .rsvp-row--two {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+    }
+
+    .rsvp-label {
+      font-size: 0.9rem;
+      margin-bottom: 0.25rem;
+      color: #7a4b14;
+    }
+
+    .rsvp-input,
+    .rsvp-textarea {
+      width: 100%;
+      padding: 0.5rem 0.6rem;
+      border-radius: 8px;
+      border: 1px solid rgba(139,69,19,0.4);
+      font-family: inherit;
+      font-size: 0.95rem;
+      background: #fff;
+    }
+
+    .rsvp-textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .rsvp-file {
+      font-size: 0.9rem;
+    }
+
+    .rsvp-button {
+      margin-top: 0.4rem;
+      padding: 0.55rem 1.4rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      background: linear-gradient(90deg, var(--accent-2), var(--accent-3));
+      color: #fff;
+      align-self: flex-start;
+    }
+
+    .rsvp-button:hover {
+      opacity: 0.9;
+    }
+
+    .rsvp-note {
+      font-size: 0.85rem;
+      color: #8a5b1c;
+      font-style: italic;
+    }
+
+    /* Map / Google Maps (smaller) */
+    .map-section {
+      background: #fffdf2;
+      border-radius: 18px;
+      border: 2px solid rgba(178, 34, 34, 0.3);
+      padding: 1.6rem 1.3rem;
+      margin-top: 1.5rem;
+      text-align: center;
+    }
+
+    .map-text {
+      font-size: 0.96rem;
+      margin-bottom: 1rem;
+    }
+
+    .map-wrapper {
+      max-width: 500px;
+      height: 230px;
+      margin: 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+    }
+
+    .map-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .map-note {
+      margin-top: 0.6rem;
+      font-size: 0.85rem;
+      color: #8a5b1c;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem 2.5rem;
+      font-size: 0.92rem;
+      color: #8a5b1c;
+    }
+
+    .footer-line {
+      margin-bottom: 0.4rem;
+    }
+
+    .footer-small {
+      font-size: 0.85rem;
+    }
+
+    /* ===== MOBILE TWEAKS ===== */
+    @media (max-width: 700px) {
+      body {
+        padding-top: 56px;
+      }
+
+      .container {
+        padding: 1.2rem 1rem;
+      }
+
+      .topbar-inner {
+        padding-block: 0.3rem;
+      }
+
+      .brand {
+        font-size: 1rem;
+      }
+
+      /* Show hamburger, hide links until opened */
+      .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .topbar-links {
+        position: absolute;
+        right: 1rem;
+        top: 100%;
+        margin-top: 0.25rem;
+        background: rgba(255, 249, 230, 0.98);
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+        padding: 0.45rem 0.5rem;
+        flex-direction: column;
+        align-items: flex-end;
+        display: none;
+      }
+
+      .topbar-links a {
+        width: 100%;
+        text-align: right;
+        padding: 0.35rem 0.8rem;
+        font-size: 0.9rem;
+      }
+
+      .topbar-links.open {
+        display: flex;
+      }
+
+      /* Hero text smaller to fit fully */
+      header {
+        padding: 1.6rem 0.7rem;
+      }
+
+      header .card {
+        padding: 1.6rem 1.1rem;
+      }
+
+      header h1 {
+        font-size: 1.9rem;
+      }
+
+      header h2 {
+        font-size: 1.05rem;
+      }
+
+      .hero-areas {
+        font-size: 0.95rem;
+      }
+
+      header p {
+        font-size: 0.9rem;
+      }
+
+      .tagline {
+        font-size: 0.95rem;
+      }
+
+      .highlight-pill {
+        font-size: 0.9rem;
+        padding-inline: 1.1rem;
+      }
+
+      /* Memories images: full width on small screens */
+      .memories-slider {
+        max-width: 100%;
+      }
+
+      .memory-slide img {
+        max-width: 100%;
+        height: 320px;
+      }
+
+      .memory-caption {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- TOP TOOLBAR -->
+  <nav class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">K.V. Ramesh Reddy</div>
+
+      <button class="menu-toggle" aria-label="Toggle navigation">
+        ☰
+      </button>
+
+      <div class="topbar-links">
+        <a href="#top">Home</a>
+        <a href="#venue">Guests</a>
+        <a href="#journey">Journey</a>
+        <a href="#memories">Memories</a>
+        <a href="#diary">Download Diary</a>
+        <a href="#rsvp">RSVP</a>
+        <a href="#map">Map</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO / INTRO -->
+  <header id="top">
+    <div class="container">
+      <div class="card">
+        <div class="border-top"></div>
+        <div class="border-bottom"></div>
+
+        <h1>
+          <span class="hero-line-1">Honouring</span>
+          <span class="hero-line-2">Shri K.V. Ramesh Reddy</span>
+        </h1>
+
+        <h2>Deputy Inspector General, Registration and Stamps Department</h2>
+        <p class="hero-areas">Nizamabad &amp; Karimnagar</p>
+
+        <p>With heartfelt gratitude, we invite you to join us in celebrating</p>
+        <p><strong>30 years of dedicated Government service</strong></p>
+
+        <p class="tagline">
+          A journey of duty, integrity and compassion — now stepping into a new chapter.
+        </p>
+
+        <p class="highlight-pill">
+          <span class="pill-title">Retirement Felicitation</span>
+          <span class="pill-date">• 30th November 2025</span>
+        </p>
+
+        <div class="scroll-hint">
+          <span>Scroll down to see the guests, journey, memories and diary</span>
+          <div class="scroll-arrow"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- GUESTS -->
+  <section id="venue" class="fade-section">
+    <div class="container">
+      <h3>Guests</h3>
+
+      <div class="venue-section">
+        <div class="venue-grid">
+          <!-- Chief Guest -->
+          <div class="guests-block">
+            <h4>Chief Guest</h4>
+            <ul class="guest-list">
+              <li>
+                <strong>Sri Rajeevgandhi Hanumanthu, IAS</strong><br />
+                Secretary (Revenue &amp; Registration), Govt of Telangana<br />
+                Commissioner &amp; Inspector General (R&amp;S Dept), Telangana
+              </li>
+            </ul>
+          </div>
+
+          <!-- Distinguished Guest & Presiding Officer -->
+          <div class="guests-block">
+            <h4>Distinguished Guest &amp; Presiding Officer</h4>
+            <ul class="guest-list">
+              <li>
+                <strong>Sri M. Venkat Rajesh</strong><br />
+                Additional Inspector General, R&amp;S Dept
+              </li>
+            </ul>
+          </div>
+
+          <!-- Honourable Guests -->
+          <div class="guests-block">
+            <h4>Honourable Guests</h4>
+            <ul class="guest-list">
+              <li>
+                <strong>Sri Vemula Srinivasulu</strong><br />
+                Joint Inspector General &amp; OSD to CM of Telangana
+              </li>
+              <li>
+                <strong>Sri G. Madhusudhan Reddy</strong><br />
+                Joint Inspector General
+              </li>
+              <li>
+                <strong>Smt Twinkle Joanne</strong><br />
+                Deputy Inspector General
+              </li>
+              <li>
+                <strong>Smt D Subashini</strong><br />
+                Deputy Inspector General
+              </li>
+              <li>
+                <strong>Sri M. Santosh</strong><br />
+                District Registrar, Rangareddy District<br />
+                Deputy Inspector General I/C
+              </li>
+              <li>
+                All District Registrars of the Department
+              </li>
+            </ul>
+          </div>
+
+          <!-- Dear Guests -->
+          <div class="guests-block">
+            <h4>Dear Guests</h4>
+            <ul class="guest-list">
+              <li>
+                <strong>Mr. Mujeeeb Hussain</strong><br />
+                General Secretary, TNGOs
+              </li>
+              <li>
+                <strong>Sri Sahadev</strong><br />
+                Vice President – Telangana Gazetted Officers Association
+              </li>
+              <li>
+                <strong>Sri G Sthithapragna</strong><br />
+                President – Telangana Registration and Stamps Employees JAC
+              </li>
+              <li>
+                <strong>Sri Siraj Anwar</strong><br />
+                General Secretary – Telangana Registration and Stamps Employees JAC
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="note">
+          A warm invitation to all of you for this celebration. We wish that you all come
+          and make this event a memorable success.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNEY -->
+  <section id="journey" class="fade-section">
+    <div class="container">
+      <h3>Journey Through Service</h3>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">1995</div>
+          <div class="timeline-role">Joined Government Service</div>
+          <div class="timeline-text">
+            Stepped into the Police Department with a commitment to public service.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">1996</div>
+          <div class="timeline-role">Sub Registrar in Registration</div>
+          <div class="timeline-text">
+            Worked closely with citizens, learning their challenges and earning their trust on the ground.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">Mid Career</div>
+          <div class="timeline-role">Leadership in Administration</div>
+          <div class="timeline-text">
+            Led teams, mentored colleagues and helped implement policies for smoother public services.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">Recent Years</div>
+          <div class="timeline-role">District Collector</div>
+          <div class="timeline-text">
+            Guided the district administration with calm, balance and a people-first approach.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2025</div>
+          <div class="timeline-role">Retirement &amp; New Beginnings</div>
+          <div class="timeline-text">
+            Completing 30 years in Government — stepping into a peaceful, joyful new phase of life.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMORIES (AUTO-SLIDING IMAGES) -->
+  <section id="memories" class="fade-section">
+    <div class="container">
+      <h3>Memories in Frames</h3>
+
+      <div class="memories-wrapper">
+        <p class="memories-intro">
+          A few snapshots from years of hard work, friendships and countless moments of service.
+        </p>
+
+        <div class="memories-slider">
+          <!-- Slide 1 -->
+          <div class="memory-slide active">
+            <img src="image/mem1.jpg" alt="First posting" />
+            <div class="memory-caption">
+              First posting – a young officer stepping into service with big dreams and a determined smile.
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="memory-slide">
+            <img src="image/mem2.jpg" alt="Field visit with team" />
+            <div class="memory-caption">
+              Field visit with the team – walking through villages, listening to people on the ground.
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="memory-slide">
+            <img src="image/mem3.jpg" alt="Meeting citizens" />
+            <div class="memory-caption">
+              Meeting citizens – patient hearings, calm words and firm decisions.
+            </div>
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="memory-slide">
+            <img src="image/mem4.jpg" alt="With colleagues" />
+            <div class="memory-caption">
+              With colleagues – a team that stood together through challenges and milestones.
+            </div>
+          </div>
+
+          <!-- Slide 5 -->
+          <div class="memory-slide">
+            <img src="image/mem4.jpg" alt="Farewell moments" />
+            <div class="memory-caption">
+              Farewell moments – smiles, gratitude and warm wishes for the new chapter ahead.
+            </div>
+          </div>
+        </div>
+
+        <div class="memories-dots">
+          <div class="memories-dot active"></div>
+          <div class="memories-dot"></div>
+          <div class="memories-dot"></div>
+          <div class="memories-dot"></div>
+          <div class="memories-dot"></div>
+        </div>
+
+        <p class="memories-hint">
+          Images gently change every few seconds.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD DIARY -->
+  <section id="diary" class="fade-section">
+    <div class="container">
+      <h3>Download Diary</h3>
+
+      <div class="download-section">
+        <p class="download-text">
+          You can download the retirement diary with messages, memories and photos
+          compiled for Shri K.V. Ramesh Reddy garu.
+        </p>
+
+        <!-- Put your diary file in the same folder as this HTML
+             and update the file name below if needed -->
+        <a class="download-button" href="Ramesh_Retirement_Diary.pdf" download>
+          Download the Diary (PDF)
+        </a>
+
+        <p class="download-note">
+          If the download does not start, please ensure the diary file is uploaded
+          to the website with the same name.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP & WISHES -->
+  <section id="rsvp" class="fade-section">
+    <div class="container">
+      <h3>Wishes &amp; Memories</h3>
+
+      <div class="rsvp-section">
+        <p class="rsvp-intro">
+          Colleagues, friends and well-wishers are invited to share their
+          blessings and memories for Shri K.V. Ramesh Reddy garu.
+        </p>
+
+        <!-- This form is visual only; connect it to a backend / Google Form to store data. -->
+        <form class="rsvp-form">
+          <div class="rsvp-row rsvp-row--two">
+            <div>
+              <div class="rsvp-label">Full Name</div>
+              <input class="rsvp-input" type="text" name="name" placeholder="Your Name" required />
+            </div>
+            <div>
+              <div class="rsvp-label">Department / Designation</div>
+              <input class="rsvp-input" type="text" name="dept" placeholder="e.g., Revenue Dept, Senior Assistant" />
+            </div>
+          </div>
+
+          <div class="rsvp-row">
+            <div class="rsvp-label">Your Wishes / Message</div>
+            <textarea class="rsvp-textarea" name="message" placeholder="Write your wishes or a short memory here..." required></textarea>
+          </div>
+
+          <div class="rsvp-row">
+            <div class="rsvp-label">Upload a Photo (optional)</div>
+            <input class="rsvp-file" type="file" name="photo" accept="image/*" />
+          </div>
+
+          <button type="submit" class="rsvp-button">Send Your Wishes</button>
+
+          <p class="rsvp-note">
+            This is a sample form. To store responses, link this page to a Google Form,
+            Formspree, or any backend service.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAP / GOOGLE MAPS (SMALLER) -->
+  <section id="map" class="fade-section">
+    <div class="container">
+      <h3>Find the Venue</h3>
+
+      <div class="map-section">
+        <p class="map-text">
+          Venue: Jenvi Conventions, Secunderabad<br />
+          Date: 30th November 2025<br />
+          Time: 11:00 AM onwards
+        </p>
+
+        <!-- Smaller embedded map -->
+        <div class="map-wrapper">
+          <iframe
+            src="https://maps.google.com/maps?width=400&height=250&hl=en&q=Jenvi%20Conventions&t=&z=14&ie=UTF8&iwloc=B&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <p class="map-note">
+          
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-line">
+      With love from family, friends and colleagues of Shri Ramesh.
+    </div>
+    <div class="footer-small">
+      “A life of service never truly retires — it continues in the hearts of the people.”
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger / dropdown navigation for mobile
+    const menuToggle = document.querySelector(".menu-toggle");
+    const topbarLinks = document.querySelector(".topbar-links");
+
+    menuToggle.addEventListener("click", () => {
+      topbarLinks.classList.toggle("open");
+    });
+
+    // Close menu after clicking a link (on mobile)
+    topbarLinks.addEventListener("click", (e) => {
+      if (e.target.tagName === "A") {
+        topbarLinks.classList.remove("open");
+      }
+    });
+
+    // Scroll animation for timeline items and sections
+    const timelineItems = document.querySelectorAll(".timeline-item");
+    const fadeSections = document.querySelectorAll(".fade-section");
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    timelineItems.forEach(item => observer.observe(item));
+    fadeSections.forEach(section => observer.observe(section));
+
+    // Memories slider (auto slide with dots)
+    const slides = document.querySelectorAll(".memory-slide");
+    const dots = document.querySelectorAll(".memories-dot");
+    let currentSlide = 0;
+
+    function showSlide(index) {
+      slides[currentSlide].classList.remove("active");
+      dots[currentSlide].classList.remove("active");
+
+      currentSlide = (index + slides.length) % slides.length;
+
+      slides[currentSlide].classList.add("active");
+      dots[currentSlide].classList.add("active");
+    }
+
+    // Auto change every 4 seconds
+    setInterval(() => {
+      showSlide(currentSlide + 1);
+    }, 4000);
+  </script>
+</body>
+</html>
